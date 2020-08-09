@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home{% endblock title %}</title>
+</head>
+<body>
+<main>
+    {% block content %}
+    <div class="jumbotron bg-warning">
+<h1 class="display-4">Smart Parrot Dailies</h1>
+<p class="lead">A Newspaper website built with Django.</p>
+<p class="lead">
+<a class="btn btn-success btn-lg" href="{% url 'article_list' %}"
+role="button">View All Articles</a>
+</p>
+</div>
+
+
+    {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">Log Out</a> </p>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a> | <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    {% endblock content %}
+
+</main>
+</body>
+</html>
